@@ -15,7 +15,7 @@ Yape隐私计算框架
    start.md
    app_exploitation/index
    blockchain_wallet/index
-   privatr_execute_environmnet.md
+   private_execute_environmnet.md
    cipher_structure/index
    blockchain_service/index
    example_app/index
