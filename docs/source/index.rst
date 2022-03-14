@@ -18,5 +18,4 @@ Yape隐私计算框架
    private_execute_environmnet.md
    cipher_structure/index
    blockchain_service/index
-   example_app/index
-   about
+   example_app.md
