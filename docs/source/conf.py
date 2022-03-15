@@ -2,9 +2,9 @@
 
 # -- Project information
 
-project = 'Yape隐私计算框架'
-copyright = '2021, Yape'
-author = 'Yape'
+project = '博雅正链隐私计算框架YAPE'
+copyright = '2021, YAPE'
+author = 'YAPE'
 
 release = '0.1'
 version = '0.1.0'
