@@ -22,7 +22,7 @@ YAPE框架中的部分关键功能依赖于博雅正链EVM虚拟机执行环境�
          .. raw:: html
 
             <br>
-            <h style="font-size: 22px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;快速开始</h>
+            <h style="font-size: 22px;">快速开始</h>
             <br><br>
          
          - `关于博雅正链公共测试网络 <./start/bon.html>`_
