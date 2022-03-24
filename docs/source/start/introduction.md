@@ -14,9 +14,9 @@ YAPE框架中的部分关键功能依赖于博雅正链EVM虚拟机执行环境�
 
 ### 快速开始
 
-* [关于博雅正链公共测试网络](https://yape.readthedocs.io)
-* [通过Yallet客户端创建账户](https://yape.readthedocs.io)
-* [开发第一个区块链应用](https://yape.readthedocs.io)
+* [关于博雅正链公共测试网络](https://yape.readthedocs.io/en/latest/start/bon.html)
+* [通过Yallet客户端创建账户](https://yape.readthedocs.io/en/latest/blockchain_wallet/Yallet.html)
+* [开发第一个区块链应用](https://yape.readthedocs.io/en/latest/app_exploitation/intro.html)
 * [通过YAPE框架开发一个数据安全应用](https://yape.readthedocs.io)
 
 
