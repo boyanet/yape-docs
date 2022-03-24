@@ -12,7 +12,8 @@
    :maxdepth: 2
    :caption: 入门
 
-   start.md
+   start/introduction.md
+   start/bon.md
 
 .. toctree::
    :maxdepth: 2
