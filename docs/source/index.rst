@@ -30,9 +30,31 @@ YAPE框架中的部分关键功能依赖于博雅正链EVM虚拟机执行环境�
          - `开发第一个区块链应用 <./app_exploitation/intro.html>`_
          - `通过YAPE框架开发一个数据安全应用（链接待添加） <https://yape.readthedocs.io>`_
 
+   .. container:: card-holder
+      
+      .. container:: card manuals
+
+         .. raw:: html
+
+            <br>
+            <h style="font-size: 22px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;开发手册</h>
+            <br><br>
+         
+         - `关键概念 <./docs/tutorial/key_concepts.html>`_
+         - `区块链网络搭建 <./docs/blockchain_dev/index.html>`_
+         - `区块链应用开发 <./docs/app_dev/index.html>`_
+         - `FISCO BCOS Java SDK <./docs/sdk/java_sdk/index.html>`_
+         - `问题排查 <./docs/faq/index.html>`_
+
    .. container:: card-holder-bigger
       
       .. container:: card-bigger rocket
+
+         .. raw:: html
+
+            <br>
+            <h style="font-size: 22px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名称</h>
+            <br><br>
 
          .. container:: tools 
          
@@ -50,27 +72,23 @@ YAPE框架中的部分关键功能依赖于博雅正链EVM虚拟机执行环境�
          .. raw:: html
 
             <hr>
-            
-      .. container:: card-bigger rocket
 
          .. container:: tools 
-         
+
             .. raw:: html
          
-               <img src="此处应有截图.png" class="card-holder" >
                <div class="tools-holder">
                   <br>
                   <h style="font-size: 18px;"><b><a href="./blockchain_wallet/Yallet.html">Yallet轻节点客户端</a></b></h>
                   <br><br>
                   <p>此处应有描述</p>
                </div>
+               <img src="此处应有截图.png" class="card-holder" >
                <div style="clear:both"></div>
 
          .. raw:: html
 
             <hr>
-            
-       .. container:: card-bigger rocket
 
          .. container:: tools 
          
@@ -84,6 +102,7 @@ YAPE框架中的部分关键功能依赖于博雅正链EVM虚拟机执行环境�
                   <p>全节点客户端是命令行工具。补充描述信息及界面截图</p>
                </div>
                <div style="clear:both"></div>
+               <br><br>
 
          .. raw:: html
 
