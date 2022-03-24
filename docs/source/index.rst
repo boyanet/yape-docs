@@ -121,14 +121,19 @@ YAPE框架中的部分关键功能依赖于博雅正链EVM虚拟机执行环境�
    :maxdepth: 2
    :caption: 密码框架
 
+   cipher_structure/intro.md
    cipher_structure/mpc.md
    cipher_structure/psi.md
    cipher_structure/zkp.md
    cipher_structure/he.md
    cipher_structure/fe.md
    cipher_structure/rs.md
+   cipher_structure/bs.md
    cipher_structure/pre.md
-   cipher_structure/gm.md
+   cipher_structure/cs.md
+   cipher_structure/sm2.md
+   cipher_structure/sm3.md
+   cipher_structure/sm9.md
 
 .. toctree::
    :maxdepth: 2
