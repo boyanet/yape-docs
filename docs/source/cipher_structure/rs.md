@@ -1,10 +1,27 @@
-# 环签名
+# 环签名验证
 
-环签名允许一个签名者代表一个群体进行签名，同时保证签名者身份的匿名性。签名者可以自由指定签名群体，在签名时无需群体中其他成员的知情或参与，只需要用自己的私钥和其他成员的公钥就能实现。签名接收方在验证签名时，仅能够验证签名确实由该群体签发，而不能确认是由群体中的哪个成员实际完成的。
+环签名是一种支持隐私保护的数字签名方案。常规的签名方案，如SM2签名和ECDSA签名，签名方的地址可以通过签名值导出，无法实现签名的匿名性。在环签名方案中，验证方仅能够验证一个有效的签名来自一个群组中的某个成员，但是无法获得确切的签名方身份信息。环签名用于需要身份匿名和隐私保护的场景，如投票、拍卖等。
 
-环签名满足的性质包括:
+YAPE支持SM2环签名算法，其中预编译合约(SM2RingVerify)仅完成环签名验证功能，环签名的生成需要通过调用YAPE SDK完成。
 
-- 无条件匿名性：攻击者即便非法获取了所有环成员的私钥，能确定真正签名者的概率也不超过$1/r$，$r$是环中成员（可能的签名者）的个数；
-- 不可伪造性：环中其他成员不能伪造真实签名者的签名；攻击者即使获得某个有效的环签名，其成功伪造一个新消息合法签名的概率也是可忽略的。
+```solidity
+pragma solidity >=0.8;
 
-环签名算法具有广泛的应用，例如用于匿名投票系统（将签名后的投票信息发布至链上，签名公开可验证，但无法确认投票者身份信息），或在区块链系统中用于实现交易的不可链接性。
+contract Precompiles {
+    function callSM9Pairing(bytes memory input) public returns (bytes32 result) {
+        // input is a serialized bytes stream of (a1, b1, a2, b2, ..., ak, bk) from (G_1 x G_2)^k
+        uint256 len = input.length;
+        require(len % 192 == 0);
+        assembly {
+            let memPtr := mload(0x40)
+            let success := call(gas, 0x08, 0, add(input, 0x20), len, memPtr, 0x20)
+            switch success
+            case 0 {
+                revert(0,0)
+            } default {
+                result := mload(memPtr)
+            }
+        }
+    }
+}
+```
