@@ -148,3 +148,11 @@ YAPE框架中的部分关键功能依赖于博雅正链EVM虚拟机执行环境�
    :caption: 示例应用
    
    example_app.md
+   
+.. toctree::
+   :maxdepth: 2
+   :caption: API
+   
+   API/ca.md
+   API/comm.md
+   API/user.md
