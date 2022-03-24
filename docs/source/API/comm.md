@@ -1,6 +1,6 @@
 # 委员会节点
 
-## 对外接口
+## 对外RPC接口
 
 ### verify_cert(address: Address, secret: String)
 
