@@ -1,5 +1,53 @@
 # 同态加密
 
-同态加密在云计算和大数据的时代意义十分重大。目前，虽然云计算带来了包括低成本、高性能和便捷性等优势，但从安全角度讲，用户还不敢将敏感信息直接放到第三方云上进行处理。如果有了比较实用的同态加密技术，则大家就可以放心的使用各种云服务了，同时各种数据分析过程也不会泄露用户隐私。加密后的数据在第三方服务处理后得到加密后的结果，这个结果只有用户自身可以进行解密，整个过程第三方平台无法获知任何有效的数据信息。
+同态加密是一种公钥加密算法，有别于常规的公钥加密算法，同态加密支持密文上的计算。YAPE通过预编译合约支持两种同态加密算法：SM2同态加密和Paillier同态加密。这两种算法在功能上相同，当整型数值加密并通过交易上链后，智能合约可以调用对应的预编译合约对密文进行加法计算并得到和的密文。注意，预编译合约的调用方应保证计算不会溢出。
 
-同态加密与区块链也有着良好的结合。在现有的区块链系统中，绝大多数数据都是以明文形式存储的，可以被任何用户查看，不具有隐私性。使用同态加密技术，智能合约可以直接对密文进行处理，在保护明文隐私的同时保持数据的可审计性。
+同态加密的预编译合约仅完成密文加法计算功能，数值的加密和解密算法需要通过调用YAPE SDK完成。
+
+下面给出调用SM2密文加法的预编译合约的合约代码例子：
+
+```
+pragma solidity >=0.4.21;
+
+contract Precompiles {
+    function callBn256Pairing(bytes memory input) public returns (bytes32 result) {
+        // input is a serialized bytes stream of (a1, b1, a2, b2, ..., ak, bk) from (G_1 x G_2)^k
+        uint256 len = input.length;
+        require(len % 192 == 0);
+        assembly {
+            let memPtr := mload(0x40)
+            let success := call(gas, 0x08, 0, add(input, 0x20), len, memPtr, 0x20)
+            switch success
+            case 0 {
+                revert(0,0)
+            } default {
+                result := mload(memPtr)
+            }
+        }
+    }
+}
+```
+
+下面给出调用Paillier密文加法的预编译合约的合约代码例子：
+
+```
+pragma solidity >=0.4.21;
+
+contract Precompiles {
+    function callBn256Pairing(bytes memory input) public returns (bytes32 result) {
+        // input is a serialized bytes stream of (a1, b1, a2, b2, ..., ak, bk) from (G_1 x G_2)^k
+        uint256 len = input.length;
+        require(len % 192 == 0);
+        assembly {
+            let memPtr := mload(0x40)
+            let success := call(gas, 0x08, 0, add(input, 0x20), len, memPtr, 0x20)
+            switch success
+            case 0 {
+                revert(0,0)
+            } default {
+                result := mload(memPtr)
+            }
+        }
+    }
+}
+```
