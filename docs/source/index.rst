@@ -27,8 +27,8 @@ YAPE框架中的部分关键功能依赖于博雅正链EVM虚拟机执行环境�
          
          - `关于博雅正链公共测试网络 <./start/bon.html>`_
          - `通过Yallet客户端创建账户 <./blockchain_wallet/Yallet.html>`_
-         - `开发第一个区块链应用 <./app_exploitation/intro.html>`_
-         - `通过YAPE框架开发一个数据安全应用（链接待添加） <https://yape.readthedocs.io>`_
+         - `开发第一个区块链应用 <./start/first_bc_app.html>`_
+         - `通过YAPE框架开发一个数据安全应用 <./start/yape_app.html>`_
 
 
    .. container:: card-holder-bigger
