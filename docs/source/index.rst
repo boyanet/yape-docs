@@ -95,6 +95,8 @@ YAPE框架中的部分关键功能依赖于博雅正链EVM虚拟机执行环境�
 
    start/introduction.md
    start/bon.md
+   start/first_bc_app.md
+   start/yape_app.md
 
 .. toctree::
    :maxdepth: 2
