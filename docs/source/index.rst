@@ -11,7 +11,7 @@ YAPE隐私执行框架主要包括EVM预编译合约、面向典型安全场景�
 
 .. note::
 
-YAPE框架中的部分关键功能依赖于博雅正链EVM虚拟机执行环境，开发者和用户需要检查YAPE框架的版本和EVM虚拟机的版本兼容性，具体参考 `[YAPE版本号] <https://yape.readthedocs.io>`_ 
+   YAPE框架中的部分关键功能依赖于博雅正链EVM虚拟机执行环境，开发者和用户需要检查YAPE框架的版本和EVM虚拟机的版本兼容性，具体参考 `[YAPE版本号] <https://yape.readthedocs.io>`_ 
 
 .. container:: row 
    
