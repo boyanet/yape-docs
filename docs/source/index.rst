@@ -154,6 +154,6 @@ YAPE隐私执行框架主要包括EVM预编译合约、面向典型安全场景�
    :maxdepth: 2
    :caption: API
    
-   API/ca.md
-   API/comm.md
-   API/user.md
+   API/private_identity_management/ca.md
+   API/private_identity_management/comm.md
+   API/private_identity_management/user.md
