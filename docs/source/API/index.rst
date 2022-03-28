@@ -4,6 +4,6 @@ API
 .. toctree::
    :maxdepth: 2
 
-   ca.md
-   comm.md
-   user.md
+   private_identity_management/ca.md
+   private_identity_management/comm.md
+   private_identity_management/user.md
