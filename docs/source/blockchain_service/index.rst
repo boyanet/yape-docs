@@ -4,6 +4,6 @@
 .. toctree::
    :maxdepth: 2
 
-   identity_management.md
-   data_market.md
-   fee_system.md
+   private_identity_management.md
+   privacy_data_audition.md
+   changeable_blockchain.md
