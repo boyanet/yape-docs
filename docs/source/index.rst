@@ -140,9 +140,9 @@ YAPE隐私执行框架主要包括EVM预编译合约、面向典型安全场景�
    :maxdepth: 2
    :caption: 区块链服务
    
-   blockchain_service/identity_management.md
-   blockchain_service/data_market.md
-   blockchain_service/fee_system.md
+   blockchain_service/private_identity_management.md
+   blockchain_service/privacy_data_audition.md
+   blockchain_service/changeable_blockchain.md
 
 .. toctree::
    :maxdepth: 2
