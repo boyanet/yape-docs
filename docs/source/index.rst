@@ -126,6 +126,7 @@ YAPE隐私执行框架主要包括EVM预编译合约、面向典型安全场景�
    cipher_structure/mpc.md
    cipher_structure/psi.md
    cipher_structure/zkp.md
+   cipher_structure/vc.md
    cipher_structure/he.md
    cipher_structure/fe.md
    cipher_structure/rs.md
