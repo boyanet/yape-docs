@@ -8,6 +8,7 @@
    mpc.md
    psi.md
    zkp.md
+   vc.md
    he.md
    fe.md
    rs.md
