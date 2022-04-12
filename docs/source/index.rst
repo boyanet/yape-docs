@@ -95,14 +95,6 @@ YAPE隐私执行框架主要包括EVM预编译合约、面向典型安全场景�
    start/bon.md
    start/first_bc_app.md
    start/yape_app.md
-
-.. toctree::
-   :maxdepth: 2
-   :caption: 应用开发
-   :hidden:
-
-   app_exploitation/intro.md
-   app_exploitation/sdk_exploitation.md
    
 .. toctree::
    :maxdepth: 2
@@ -118,13 +110,6 @@ YAPE隐私执行框架主要包括EVM预编译合约、面向典型安全场景�
    :hidden:
 
    private_execute_environmnet.md
-   
-.. toctree::
-   :maxdepth: 2
-   :caption: 密码框架
-   :hidden:
-
-   cipher_structure/intro.md
    cipher_structure/mpc.md
    cipher_structure/psi.md
    cipher_structure/zkp.md
@@ -141,24 +126,15 @@ YAPE隐私执行框架主要包括EVM预编译合约、面向典型安全场景�
 
 .. toctree::
    :maxdepth: 2
-   :caption: 区块链服务
+   :caption: 安全服务
    :hidden:
    
    blockchain_service/private_identity_management.md
    blockchain_service/privacy_data_audition.md
    blockchain_service/changeable_blockchain.md
 
-.. toctree::
-   :maxdepth: 2
-   :caption: 示例应用
-   :hidden:
-   
-   example_app.md
-   
-.. toctree::
-   :maxdepth: 2
-   :caption: API
-   :hidden:
-   
    API/private_identity_management.md
+
+   
+   
    
