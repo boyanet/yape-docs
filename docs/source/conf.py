@@ -3,7 +3,7 @@
 # -- Project information
 
 project = '博雅链隐私计算框架YAPE'
-copyright = '2021, YAPE'
+copyright = '2022, YAPE'
 author = 'YAPE'
 
 release = '0.1'
@@ -32,7 +32,7 @@ templates_path = ['_templates']
 
 html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
-html_logo = "logo.png"
+html_logo = "blockchain.png"
 html_theme_options = {
     'logo_only': False,
     'display_version': False,
