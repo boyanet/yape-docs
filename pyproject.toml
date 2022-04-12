@@ -3,6 +3,6 @@ requires = ["flit_core >=3.2,<4"]
 build-backend = "flit_core.buildapi"
 
 [project]
-name = "博雅链隐私计算框架YAPE"
+name = "YAPE区块链隐私计算框架"
 authors = [{name = "YAPE", email = "heyifei@pku.edu.cn"}]
 dynamic = ["version", "description"]

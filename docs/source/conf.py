@@ -2,7 +2,7 @@
 
 # -- Project information
 
-project = '博雅链隐私计算框架YAPE'
+project = 'YAPE区块链隐私计算框架'
 copyright = '2022, YAPE'
 author = 'YAPE'
 
