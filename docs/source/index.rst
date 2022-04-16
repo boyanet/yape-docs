@@ -43,7 +43,7 @@ YAPE隐私执行框架主要包括EVM预编译合约、面向典型安全场景�
                   <br><br>
                   <p>博雅链BON测试网络提供了区块链浏览器，即供用户浏览与查询区块链所有信息的Web应用。获得许可的用户也可以通过连接Yallet客户端向区块链中写入数据。</p>
                </div>
-               <img src="此处应有截图.png" class="card-holder" >
+               <img src="./media/qukuailianliulanqi.jpg" class="card-holder" >
                <div style="clear:both"></div>
 
          .. raw:: html
