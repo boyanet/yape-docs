@@ -45,7 +45,9 @@ YAPE隐私执行框架主要包括EVM预编译合约、面向典型安全场景�
                </div>
                <img src="./media/qukuailianliulanqi.jpg" class="card-holder" >
                <div style="clear:both"></div>
-
+         .. image:: ./media/qukuailianliulanqi.jpg
+           :width: 400
+           :alt: 区块链浏览器
          .. raw:: html
 
             <hr>
