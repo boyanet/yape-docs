@@ -13,6 +13,7 @@ YAPE隐私执行框架主要包括EVM预编译合约、面向典型安全场景�
 
    YAPE框架中的部分关键功能依赖于博雅链EVM虚拟机执行环境，开发者和用户需要检查YAPE框架的版本和EVM虚拟机的版本兼容性，具体参考 `[YAPE版本号] <https://yape.readthedocs.io>`_ 
 
+
 .. container:: row 
    
    .. container:: card-holder
@@ -31,62 +32,40 @@ YAPE隐私执行框架主要包括EVM预编译合约、面向典型安全场景�
          - `通过YAPE框架开发一个数据安全应用 <./start/yape_app.html>`_
 
 
-   .. container:: card-holder-bigger
+区块链浏览器 
+***********************
 
-         .. container:: tools 
-         
-            .. raw:: html
-         
-               <div class="tools-holder">
-                  <br>
-                  <h style="font-size: 18px;"><b><a href="./blockchain_wallet/Yallet.html">区块链浏览器</a></b></h>
-                  <br><br>
-                  <p>博雅链BON测试网络提供了区块链浏览器，即供用户浏览与查询区块链所有信息的Web应用。获得许可的用户也可以通过连接Yallet客户端向区块链中写入数据。</p>
-               </div>
-               <img src="./media/qukuailianliulanqi.jpg" class="card-holder" >
-               <div style="clear:both"></div>
-         .. image:: ./media/qukuailianliulanqi.jpg
-           :width: 400
-           :alt: 区块链浏览器
-         .. raw:: html
+博雅链BON测试网络提供了区块链浏览器，即供用户浏览与查询区块链所有信息的Web应用。获得许可的用户也可以通过连接Yallet客户端向区块链中写入数据。
 
-            <hr>
+.. image:: ./media/qukuailianliulanqi.jpg
+ :width: 600
 
-         .. container:: tools 
 
-            .. raw:: html
-         
-               <div class="tools-holder">
-                  <br>
-                  <h style="font-size: 18px;"><b><a href="./blockchain_wallet/Yallet.html">Yallet轻节点客户端</a></b></h>
-                  <br><br>
-                  <p>此处应有描述</p>
-               </div>
-               <img src="此处应有截图.png" class="card-holder" >
-               <div style="clear:both"></div>
 
-         .. raw:: html
+区块链浏览器 
+***********************
 
-            <hr>
+博雅链BON测试网络提供了区块链浏览器，即供用户浏览与查询区块链所有信息的Web应用。获得许可的用户也可以通过连接Yallet客户端向区块链中写入数据。
 
-         .. container:: tools 
-         
-            .. raw:: html
-         
-               <div class="tools-holder">
-                  <br>
-                  <h style="font-size: 18px;"><b><a href="./blockchain_wallet/Yallet.html">全节点客户端</a></b></h>
-                  <br><br>
-                  <p>全节点客户端是命令行工具。补充描述信息及界面截图</p>
-               </div>
-               <img src="此处应有截图.png" class="card-holder" >
-               <div style="clear:both"></div>
-               <br><br>
+.. image:: ./media/qukuailianliulanqi.jpg
+ :width: 600
 
-         .. raw:: html
+Yallet轻节点客户端 
+***********************
 
-            <hr>
-            
+Yallet轻节点客户端
+
+.. image:: ./media/qukuailianliulanqi.jpg
+ :width: 600
+
+全节点客户端 
+***********************
+
+全节点客户端
+
+
+.. image:: ./media/qukuailianliulanqi.jpg
+ :width: 600
 
 
 .. toctree::
