@@ -105,6 +105,11 @@ Yallet轻节点客户端
    blockchain_service/privacy_data_audition.md
    blockchain_service/changeable_blockchain.md
 
+.. toctree::
+   :maxdepth: 2
+   :caption: API
+   :hidden:
+   
    API/private_identity_management.md
 
    
