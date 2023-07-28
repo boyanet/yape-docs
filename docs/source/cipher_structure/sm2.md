@@ -1,6 +1,6 @@
 # SM2数字签名算法验签
 
-GMSLL预编译合约的地址为：0x1000 - 0x10FF，总共预留了256个，sm2-verify 地址为 0x1002。0x0000 - 0x00FF为geth的预编译合约预留。
+GMSSL预编译合约的地址为：0x1000 - 0x10FF，总共预留了256个，sm2-verify 地址为 0x1002。0x0000 - 0x00FF reserved for ETH precompiles.
 
 SM2是国密椭圆曲线密码标准，其中包括加密、签名和密钥交换协议，SM2标准默认使用一个256比特的素域曲线参数。SM2RECOVER在功能上类似于以太坊的ECRECOVER预编译合约，SM2RECOVER预编译可以用于验证标准的SM2签名或以太坊EIP风格的SM2签名。
 本文写作时Solidity编译器还不支持SM2RECOVER预编译合约，因此在编写合约时需要通过内联汇编(Inline Assembly)来调用SM2RECOVER合约。
