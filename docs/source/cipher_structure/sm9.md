@@ -1,8 +1,10 @@
 # SM9标识密码算法
 
+GMSSL预编译合约的地址为：0x1000 - 0x10FF，总共预留了256个，sm9 地址为 0x1009 - 0x1011。0x0000 - 0x00FF reserved for ETH precompiles.
+
 SM9是国密标识密码算法标准，其中包括标识加密、标识签名和标识密钥交换协议，SM9标准中还包括一个推荐的BN曲线参数。博雅链EVM中增加了针对SM9曲线的椭圆曲线算术运算操作，合约可以通过调用椭圆曲线算法运算实现零知识证明、秘密共享、同态加密等上层密码方案。
 
-## SM9ADD
+## SM9ADD - 0x1009
 
 SM9Add预编译合约实现SM9椭圆曲线点的点加操作，其输入是两个椭圆曲线点的仿射坐标，输出是两个结果点的仿射坐标。本文写作时Solidity编译器还不支持SM9Add预编译合约，因此在编写合约时需要通过内联汇编(Inline Assembly)来调用SM9Add合约。下面给出调用SM9Add预编译合约的合约代码例子：
 
@@ -10,18 +12,38 @@ SM9Add预编译合约实现SM9椭圆曲线点的点加操作，其输入是两�
 pragma solidity >=0.4.21;
 
 contract Precompiles {
-    function callBn256ScalarMul(bytes32 x, bytes32 y, bytes32 scalar) public returns (bytes32[2] memory result) {
-        bytes32[3] memory input;
-        input[0] = x;
-        input[1] = y;
-        input[2] = scalar;
-        assembly {
-            let success := call(gas, 0x07, 0, input, 0x60, result, 0x40)
-            switch success
-            case 0 {
-                revert(0,0)
+    function sm9add(string memory x1, string memory y1, string memory x2, string memory y2) public view returns (string memory x, string memory y){
+        bytes memory input = new bytes(256);
+        uint32 i;
+        uint32 offset =0;
+
+        bytes memory bx1 = bytes(x1);
+        bytes memory by1 = bytes(y1);
+        bytes memory bx2 = bytes(x2);
+        bytes memory by2 = bytes(y2);
+
+        //input
+        //0-64 x1
+        //64-128 y1
+        //128-192 x2
+        //192-256 y2
+        for(i=0;i<64;i++) input[offset+i] = bx1[i]; offset +=64;
+        for(i=0;i<64;i++) input[offset+i] = by1[i]; offset +=64;
+        for(i=0;i<64;i++) input[offset+i] = bx2[i]; offset +=64;
+        for(i=0;i<64;i++) input[offset+i] = by2[i];
+        
+        bytes32[4] memory ret32;
+
+        assembly{
+            if iszero(
+                staticcall(100000, 0x0109, add(input, 32) , mload(input), ret32, 128)
+            ) {
+                invalid()
             }
         }
+
+        bytes memory ret1 = abi.encodePacked(ret32);
+        return (string(bytes_slice(ret1,0,64)),string(bytes_slice(ret1,64,128)));
     }
 }
 ```
