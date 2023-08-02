@@ -48,6 +48,15 @@ contract Precompiles {
 }
 ```
 
+### 合约调用示例
+```
+ins.sm9add("917be49d159184fba140f4dfc5d653464e94f718fe195b226b3f715829e6e768", "288578d9505d462867a50acee40ee143b896e72505be10e8ce4c6b0c945b642b", "593417680f252445fd0522383e23c77a54b11fe222de4a886eabc26e16bffa3c", "38e8fc9a8b60f5ba0c6c411f721c117044435a833757d8fee65828511b8b245d")
+Result {
+  '0': '5e4ff71938d96a2569d289dc13d3129fcf3dbc13ad7ebc53941c6ca331d400cb',
+  '1': '10002bca9f0e8aa073ad25456d75c57238f7eb1883d8df0a99af5f46fc45b501'
+}
+```
+
 ## SM9MUL
 
 SM9Mul预编译合约实现SM9椭圆曲线点的标量乘法操作，其输入是一个曲线点的仿射坐标和一个`uint256`整数表示的标量，输出是两个点乘操作的结果，点的仿射坐标。本文写作时Solidity编译器还不支持SM9Mul预编译合约，因此在编写合约时需要通过内联汇编(Inline Assembly)来调用SM9Mul合约。下面给出调用SM9Mul预编译合约的合约代码例子：
