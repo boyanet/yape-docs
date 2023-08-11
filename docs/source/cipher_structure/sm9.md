@@ -57,7 +57,7 @@ Result {
 }
 ```
 
-## SM9MUL - 0x0109
+## SM9MUL - 0x0110
 
 SM9Mul预编译合约实现SM9椭圆曲线点的标量乘法操作，其输入是一个曲线点的仿射坐标和一个`uint256`整数表示的标量，输出是两个点乘操作的结果，点的仿射坐标。本文写作时Solidity编译器还不支持SM9Mul预编译合约，因此在编写合约时需要通过内联汇编(Inline Assembly)来调用SM9Mul合约。下面给出调用SM9Mul预编译合约的合约代码例子：
 
@@ -66,7 +66,7 @@ pragma solidity >=0.8.1;
 
 contract Precompiles {
     function sm9mul(string memory x, string memory y, string memory iv) public view returns (string memory , string memory ){
-        bytes memory input = new bytes(128);
+        bytes memory input = new bytes(192);
         uint32 i;
         uint32 offset =0;
 
