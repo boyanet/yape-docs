@@ -9,7 +9,7 @@ SM9是国密标识密码算法标准，其中包括标识加密、标识签名�
 SM9Add预编译合约实现SM9椭圆曲线点的点加操作，其输入是两个椭圆曲线点的仿射坐标，输出是两个结果点的仿射坐标。本文写作时Solidity编译器还不支持SM9Add预编译合约，因此在编写合约时需要通过内联汇编(Inline Assembly)来调用SM9Add合约。下面给出调用SM9Add预编译合约的合约代码例子：
 
 ```solidity
-pragma solidity >=0.4.21;
+pragma solidity >=0.8.1;
 
 contract Precompiles {
     function sm9add(string memory x1, string memory y1, string memory x2, string memory y2) public view returns (string memory x, string memory y){
@@ -57,27 +57,53 @@ Result {
 }
 ```
 
-## SM9MUL
+## SM9MUL - 0x0109
 
 SM9Mul预编译合约实现SM9椭圆曲线点的标量乘法操作，其输入是一个曲线点的仿射坐标和一个`uint256`整数表示的标量，输出是两个点乘操作的结果，点的仿射坐标。本文写作时Solidity编译器还不支持SM9Mul预编译合约，因此在编写合约时需要通过内联汇编(Inline Assembly)来调用SM9Mul合约。下面给出调用SM9Mul预编译合约的合约代码例子：
 
 ```solidity
-pragma solidity >=0.4.21;
+pragma solidity >=0.8.1;
 
 contract Precompiles {
-    function callBn256ScalarMul(bytes32 x, bytes32 y, bytes32 scalar) public returns (bytes32[2] memory result) {
-        bytes32[3] memory input;
-        input[0] = x;
-        input[1] = y;
-        input[2] = scalar;
-        assembly {
-            let success := call(gas, 0x07, 0, input, 0x60, result, 0x40)
-            switch success
-            case 0 {
-                revert(0,0)
+    function sm9mul(string memory x, string memory y, string memory iv) public view returns (string memory , string memory ){
+        bytes memory input = new bytes(128);
+        uint32 i;
+        uint32 offset =0;
+
+        bytes memory bx = bytes(x);
+        bytes memory by = bytes(y);
+        bytes memory biv = bytes(iv);
+
+        //input
+        //0-64 x
+        //64-128 y
+        //128-192 iv
+
+        for(i=0;i<64;i++) input[offset+i] = bx[i]; offset +=64;
+        for(i=0;i<64;i++) input[offset+i] = by[i]; offset +=64;
+        for(i=0;i<64;i++) input[offset+i] = biv[i]; 
+        
+        bytes32[4] memory ret32;
+
+        assembly{
+            if iszero(
+                staticcall(100000, 0x0110, add(input, 32) , mload(input), ret32, 128)
+            ) {
+                invalid()
             }
         }
+
+        bytes memory ret1 = abi.encodePacked(ret32);
+        return (string(bytes_slice(ret1,0,64)),string(bytes_slice(ret1,64,128)));
     }
+}
+```
+### 合约调用示例
+```
+ins.sm9mul("917be49d159184fba140f4dfc5d653464e94f718fe195b226b3f715829e6e768", "288578d9505d462867a50acee40ee143b896e72505be10e8ce4c6b0c945b642b", "123456789abcdef00fedcba987654321123456789abcdef00fedcba987654321")
+Result {
+  '0': '997fcff625adbae62566f684f9e89181713f972c5a9cd9ce6764636761ba87d1',
+  '1': '8142a28d1bd109501452a649e2d68f012e265460e0c7d3da743fb036eb23b03b'
 }
 ```
 

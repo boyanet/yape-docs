@@ -27,5 +27,4 @@ contract SysContracts {
 ```
 ins.sm3("hello world")
 Result: '0x44f0061e69fa6fdfc290c494654a05dc0c053da7e5c52b84ef93a9d67d3fff88'
-
 ```
