@@ -115,20 +115,36 @@ SM9Pairing预编译合约实现SM9曲线参数上的双线性对(Pairing)操作�
 pragma solidity >=0.4.21;
 
 contract Precompiles {
-    function callBn256Pairing(bytes memory input) public returns (bytes32 result) {
-        // input is a serialized bytes stream of (a1, b1, a2, b2, ..., ak, bk) from (G_1 x G_2)^k
-        uint256 len = input.length;
-        require(len % 192 == 0);
-        assembly {
-            let memPtr := mload(0x40)
-            let success := call(gas, 0x08, 0, add(input, 0x20), len, memPtr, 0x20)
-            switch success
-            case 0 {
-                revert(0,0)
-            } default {
-                result := mload(memPtr)
+    function sm9pairing(string memory x1, string memory y1,string memory x2, string memory y2,string memory x3, string memory y3) public view returns (uint8 ){
+        bytes memory input = new bytes(384);
+        uint32 i;
+        uint32 offset =0;
+
+        bytes memory bx1 = bytes(x1);
+        bytes memory by1 = bytes(y1);
+        bytes memory bx2 = bytes(x2);
+        bytes memory by2 = bytes(y2);
+        bytes memory bx3 = bytes(x3);
+        bytes memory by3 = bytes(y3);
+
+        for(i=0;i<64;i++) input[offset+i] = bx1[i]; offset +=64;
+        for(i=0;i<64;i++) input[offset+i] = by1[i]; offset +=64;
+        for(i=0;i<64;i++) input[offset+i] = bx2[i]; offset +=64;
+        for(i=0;i<64;i++) input[offset+i] = by2[i]; offset +=64;
+        for(i=0;i<64;i++) input[offset+i] = by3[i]; offset +=64;
+        for(i=0;i<64;i++) input[offset+i] = bx3[i]; 
+        
+        bytes1[1] memory ret;
+
+        assembly{
+            if iszero(
+                staticcall(100000, 0x0111, add(input, 32) , mload(input), ret, 384)
+            ) {
+                invalid()
             }
         }
+        //1 if the pairing was a success, 0 otherwise
+        return uint8(ret[0]);
     }
 }
 ```
