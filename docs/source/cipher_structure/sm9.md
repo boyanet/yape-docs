@@ -107,7 +107,7 @@ Result {
 }
 ```
 
-## SM9PAIRING
+## SM9PAIRING - 0x0111
 
 SM9Pairing预编译合约实现SM9曲线参数上的双线性对(Pairing)操作，可以用于零知识证明等复杂密码方案。本文写作时Solidity编译器还不支持SM9Pairing预编译合约，因此在编写合约时需要通过内联汇编(Inline Assembly)来调用SM9Pairing合约。下面给出调用SM9Pairing预编译合约的合约代码例子：
 
@@ -115,36 +115,77 @@ SM9Pairing预编译合约实现SM9曲线参数上的双线性对(Pairing)操作�
 pragma solidity >=0.4.21;
 
 contract Precompiles {
-    function sm9pairing(string memory x1, string memory y1,string memory x2, string memory y2,string memory x3, string memory y3) public view returns (uint8 ){
+    function sm9pairing(string memory px, string memory py,string memory twistpx, string memory twistpy) public view returns (bytes32[24] memory ){
         bytes memory input = new bytes(384);
         uint32 i;
         uint32 offset =0;
 
-        bytes memory bx1 = bytes(x1);
-        bytes memory by1 = bytes(y1);
-        bytes memory bx2 = bytes(x2);
-        bytes memory by2 = bytes(y2);
-        bytes memory bx3 = bytes(x3);
-        bytes memory by3 = bytes(y3);
+        bytes memory bx1 = bytes(px);
+        bytes memory by1 = bytes(py);
+        bytes memory bx2 = bytes(twistpx);
+        bytes memory by2 = bytes(twistpy);
 
         for(i=0;i<64;i++) input[offset+i] = bx1[i]; offset +=64;
         for(i=0;i<64;i++) input[offset+i] = by1[i]; offset +=64;
-        for(i=0;i<64;i++) input[offset+i] = bx2[i]; offset +=64;
-        for(i=0;i<64;i++) input[offset+i] = by2[i]; offset +=64;
-        for(i=0;i<64;i++) input[offset+i] = by3[i]; offset +=64;
-        for(i=0;i<64;i++) input[offset+i] = bx3[i]; 
-        
-        bytes1[1] memory ret;
+        for(i=0;i<128;i++) input[offset+i] = bx2[i]; offset +=128;
+        for(i=0;i<128;i++) input[offset+i] = by2[i]; 
+        bytes32[24] memory ret;
 
         assembly{
             if iszero(
-                staticcall(100000, 0x0111, add(input, 32) , mload(input), ret, 384)
+                staticcall(100000, 0x0111, add(input, 32) , mload(input), ret, 768)
             ) {
                 invalid()
             }
         }
-        //1 if the pairing was a success, 0 otherwise
-        return uint8(ret[0]);
+        
+        return ret;
     }
 }
 ```
+
+### 合约调用示例
+```
+ins.sm9pairing(
+    "7CBA5B19069EE66AA79D490413D11846B9BA76DD22567F809CF23B6D964BB265", "A9760C99CB6F706343FED05637085864958D6C90902ABA7D405FBEDF7B781599", "74CCC3AC9C383C60AF083972B96D05C75F12C8907D128A17ADAFBAB8C5A4ACF701092FF4DE89362670C21711B6DBE52DCD5F8E40C6654B3DECE573C2AB3D29B2","44B0294AA04290E1524FF3E3DA8CFD432BB64DE3A8040B5B88D1B5FC86A4EBC18CFC48FB4FF37F1E27727464F3C34E2153861AD08E972D1625FC1A7BD18D5539")
+Result {
+    "4e378fb5561cd0668f906b731ac58fee25738edf09cadc7a29c0abc0177aea6d"
+	"28b3404a61908f5d6198815c99af1990c8af38655930058c28c21bb539ce0000"
+	"38bffe40a22d529a0c66124b2c308dac9229912656f62b4facfced408e02380f"
+	"a01f2c8bee81769609462c69c96aa923fd863e209d3ce26dd889b55e2e3873db"
+	"67e0e0c2eed7a6993dce28fe9aa2ef56834307860839677f96685f2b44d0911f"
+	"5a1ae172102efd95df7338dbc577c66d8d6c15e0a0158c7507228efb078f42a6"
+	"1604a3fcfa9783e667ce9fcb1062c2a5c6685c316dda62de0548baa6ba30038b"
+	"93634f44fa13af76169f3cc8fbea880adaff8475d5fd28a75deb83c44362b439"
+	"b3129a75d31d17194675a1bc56947920898fbf390a5bf5d931ce6cbb3340f66d"
+	"4c744e69c4a2e1c8ed72f796d151a17ce2325b943260fc460b9f73cb57c9014b"
+	"84b87422330d7936eaba1109fa5a7a7181ee16f2438b0aeb2f38fd5f7554e57a"
+	"aab9f06a4eeba4323a7833db202e4e35639d93fa3305af73f0f071d7d284fcfb"
+}
+```
+
+
+#define px, py \
+	"7CBA5B19069EE66AA79D490413D11846B9BA76DD22567F809CF23B6D964BB265\n" \
+	"A9760C99CB6F706343FED05637085864958D6C90902ABA7D405FBEDF7B781599"
+#define twistpx twistpy \
+	"74CCC3AC9C383C60AF083972B96D05C75F12C8907D128A17ADAFBAB8C5A4ACF7\n" \
+	"01092FF4DE89362670C21711B6DBE52DCD5F8E40C6654B3DECE573C2AB3D29B2\n" \
+	"44B0294AA04290E1524FF3E3DA8CFD432BB64DE3A8040B5B88D1B5FC86A4EBC1\n" \
+	"8CFC48FB4FF37F1E27727464F3C34E2153861AD08E972D1625FC1A7BD18D5539"
+
+	
+
+#define r \
+	"4e378fb5561cd0668f906b731ac58fee25738edf09cadc7a29c0abc0177aea6d\n" \
+	"28b3404a61908f5d6198815c99af1990c8af38655930058c28c21bb539ce0000\n" \
+	"38bffe40a22d529a0c66124b2c308dac9229912656f62b4facfced408e02380f\n" \
+	"a01f2c8bee81769609462c69c96aa923fd863e209d3ce26dd889b55e2e3873db\n" \
+	"67e0e0c2eed7a6993dce28fe9aa2ef56834307860839677f96685f2b44d0911f\n" \
+	"5a1ae172102efd95df7338dbc577c66d8d6c15e0a0158c7507228efb078f42a6\n" \
+	"1604a3fcfa9783e667ce9fcb1062c2a5c6685c316dda62de0548baa6ba30038b\n" \
+	"93634f44fa13af76169f3cc8fbea880adaff8475d5fd28a75deb83c44362b439\n" \
+	"b3129a75d31d17194675a1bc56947920898fbf390a5bf5d931ce6cbb3340f66d\n" \
+	"4c744e69c4a2e1c8ed72f796d151a17ce2325b943260fc460b9f73cb57c9014b\n" \
+	"84b87422330d7936eaba1109fa5a7a7181ee16f2438b0aeb2f38fd5f7554e57a\n" \
+	"aab9f06a4eeba4323a7833db202e4e35639d93fa3305af73f0f071d7d284fcfb"
