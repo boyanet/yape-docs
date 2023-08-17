@@ -112,7 +112,7 @@ Result {
 SM9Pairing预编译合约实现SM9曲线参数上的双线性对(Pairing)操作，可以用于零知识证明等复杂密码方案。本文写作时Solidity编译器还不支持SM9Pairing预编译合约，因此在编写合约时需要通过内联汇编(Inline Assembly)来调用SM9Pairing合约。下面给出调用SM9Pairing预编译合约的合约代码例子：
 
 ```solidity
-pragma solidity >=0.4.21;
+pragma solidity >=0.8.1;
 
 contract Precompiles {
     function sm9pairing(string memory px, string memory py,string memory twistpx, string memory twistpy) public view returns (bytes32[24] memory ){
